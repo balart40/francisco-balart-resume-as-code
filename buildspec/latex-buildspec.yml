@@ -1,0 +1,13 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo "Preparing for LaTeX compilation"
+
+  build:
+    commands:
+      - pdflatex main.tex
+
+  post_build:
+    commands:
+      - aws s3 cp main.pdf s3://temporary-resume-bucket/

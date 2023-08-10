@@ -48,6 +48,28 @@ resource "aws_codebuild_project" "tf-apply" {
   }
 }
 
+resource "aws_codebuild_project" "latex_compile" {
+  name          = "tf-latex-compile"
+  description   = "Compile LaTeX files"
+  service_role  = aws_iam_role.tf-codebuild-role.arn
+
+  artifacts {
+    type = "CODEPIPELINE"
+  }
+
+  environment {
+    compute_type                = "BUILD_GENERAL1_SMALL"
+    image                       = "blang/latex:latest"
+    type                        = "LINUX_CONTAINER"
+    image_pull_credentials_type = "SERVICE_ROLE"
+  }
+  source {
+    type = "CODEPIPELINE"
+    buildspec = file("buildspec/latex-buildspec.yml")
+  }
+}
+
+
 resource "aws_codepipeline" "cicd_pipeline" {
   name     = "tf-cicd"
   role_arn = aws_iam_role.tf-codepipeline-role.arn
@@ -72,6 +94,21 @@ resource "aws_codepipeline" "cicd_pipeline" {
       }
     }
   }
+  stage {
+    name = "CompileLaTeX"
+    action {
+      category = "Build"
+      name     = "CompileLaTeX"
+      owner    = "AWS"
+      provider = "CodeBuild"
+      version  = "1"
+      input_artifacts = ["tf-code"]
+      configuration = {
+        ProjectName = "tf-latex-compile"
+      }
+    }
+  }
+
   stage {
     name = "Plan"
     action {
