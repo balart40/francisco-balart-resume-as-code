@@ -16,4 +16,4 @@ phases:
 
   post_build:
     commands:
-      - aws s3 cp franciscoresume2023.pdf s3://temporary-resume-bucket/ --acl public-read
+      - aws s3 cp franciscoresume2023.pdf s3://temporary-resume-bucket/
