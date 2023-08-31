@@ -14,6 +14,4 @@ module "acm" {
   tags = {
     Name = "franciscobalart.io"
   }
-
-  key_algorithm =
 }
