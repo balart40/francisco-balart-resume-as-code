@@ -37,7 +37,7 @@ resource "aws_s3_bucket_policy" "public_read_policy" {
       Effect    = "Allow",
       Principal = "*",
       Action    = "s3:GetObject",
-      Resource  = "arn:aws:s3:::www.franciscobalart.io/*"
+      Resource  = "arn:aws:s3:::franciscobalart.io/*"
     }]
   })
 }
