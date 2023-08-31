@@ -14,4 +14,6 @@ module "acm" {
   tags = {
     Name = "franciscobalart.io"
   }
+
+  create_route53_records = true
 }
