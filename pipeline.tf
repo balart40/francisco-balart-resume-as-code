@@ -87,7 +87,7 @@ resource "aws_codepipeline" "cicd_pipeline" {
       version  = "1"
       output_artifacts = ["tf-code"]
       configuration = {
-        FullRepositoryId = "balart40/franciscobalartresumeascode"
+        FullRepositoryId = "balart40/francisco-balart-resume-as-code"
         BranchName = "main"
         ConnectionArn = var.codestar_connector_credentials
         OutputArtifactFormat = "CODE_ZIP"
