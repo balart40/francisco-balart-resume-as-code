@@ -16,7 +16,7 @@ module "cdn" {
   }
 
   logging_config = {
-    bucket = "logs-my-cdn.s3.amazonaws.com"
+    bucket = "resume-as-code-cdn-logs.s3.amazonaws.com"
   }
 
   origin = {
