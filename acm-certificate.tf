@@ -9,7 +9,7 @@ module "acm" {
     "franciscobalart.io",
   ]
 
-  wait_for_validation = true
+  wait_for_validation = false
 
   tags = {
     Name = "franciscobalart.io"
