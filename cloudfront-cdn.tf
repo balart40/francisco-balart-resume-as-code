@@ -21,7 +21,7 @@ module "cdn" {
 
   origin = {
     something = {
-      domain_name = "https://s3.amazonaws.com/franciscobalart.io/franciscoresume2023.pdf"
+      domain_name = "s3.amazonaws.com/franciscobalart.io/franciscoresume2023.pdf"
       custom_origin_config = {
         http_port              = 80
         https_port             = 443
