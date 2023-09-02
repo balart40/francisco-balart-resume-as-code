@@ -21,7 +21,7 @@ module "cdn" {
 
   origin = {
     something = {
-      domain_name = "franciscobalart.io.s3-website-us-east-1.amazonaws.com"
+      domain_name = aws_s3_bucket.example.bucket_regional_domain_name
       custom_origin_config = {
         http_port              = 80
         https_port             = 443
@@ -31,7 +31,7 @@ module "cdn" {
     }
 
     s3_one = {
-      domain_name = "franciscobalart.io.s3-website-us-east-1.amazonaws.com"
+      domain_name = aws_s3_bucket.example.bucket_regional_domain_name
       s3_origin_config = {
         origin_access_identity = "s3_bucket_one"
       }
