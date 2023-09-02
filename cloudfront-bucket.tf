@@ -28,7 +28,7 @@ resource "aws_s3_bucket_acl" "resume_as_code_cdn_bucket_acl" {
   acl    = "public-read"
 }
 
-resource "aws_s3_bucket_policy" "public_read_policy" {
+resource "aws_s3_bucket_policy" "cdn_public_read_policy" {
   bucket = "resume-as-code-cdn-logs"
 
   policy = jsonencode({
