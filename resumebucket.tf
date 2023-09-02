@@ -55,5 +55,5 @@ resource "aws_s3_bucket_policy" "public_read_policy" {
 }
 
 output "website_url" {
-  value = "http://${aws_s3_bucket.example}.s3-website.${aws_s3_bucket.example.region}.amazonaws.com"
+  value = "http://franciscobalart.io.s3-website.us-east-1.amazonaws.com"
 }
