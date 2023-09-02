@@ -21,7 +21,7 @@ module "cdn" {
 
   origin = {
     something = {
-      domain_name = "franciscobalart.io"
+      domain_name = "franciscobalart.io.s3-website-us-east-1.amazonaws.com"
       custom_origin_config = {
         http_port              = 80
         https_port             = 443
