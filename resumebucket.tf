@@ -2,6 +2,18 @@ resource "aws_s3_bucket" "example" {
   bucket = "franciscobalart.io"
 }
 
+resource "aws_s3_bucket_website_configuration" "my-static-website" {
+  bucket = aws_s3_bucket.example.id
+
+  index_document {
+    suffix = "franciscoresume2023.pdf"
+  }
+
+  error_document {
+    key = "franciscoresume2023.pdf"
+  }
+}
+
 resource "aws_s3_bucket_ownership_controls" "example" {
   bucket = aws_s3_bucket.example.id
   rule {
@@ -40,4 +52,8 @@ resource "aws_s3_bucket_policy" "public_read_policy" {
       Resource  = "arn:aws:s3:::franciscobalart.io/*"
     }]
   })
+}
+
+output "website_url" {
+  value = "http://${aws_s3_bucket.example}.s3-website.${aws_s3_bucket.example.region}.amazonaws.com"
 }
