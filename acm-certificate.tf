@@ -9,11 +9,13 @@ module "acm" {
     "franciscobalart.io",
   ]
 
-  wait_for_validation = false
+  wait_for_validation = true
 
   tags = {
     Name = "franciscobalart.io"
   }
 
   create_route53_records = true
+
+  key_algorithm ="RSA_2048"
 }
