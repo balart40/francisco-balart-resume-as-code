@@ -63,6 +63,7 @@ module "cdn" {
 
   viewer_certificate = {
     acm_certificate_arn = "arn:aws:acm:us-east-1:396728917751:certificate/1aa42dbe-6081-43ef-9d0a-aa314e6bfc2a"
+    ssl_support_method  = "sni-only"
   }
 
   depends_on = [module.acm]
