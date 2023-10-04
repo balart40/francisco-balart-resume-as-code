@@ -49,9 +49,9 @@ resource "aws_s3_bucket_object" "index_html" {
   <head>
       <title>Francisco Balart Resume</title>
   </head>
-  <body style="background-color: rgb(22,22, 24)">
+  <body>
       <center>
-          <h1 style="color: white; font-family: -apple-system BlinkMacSystemFont, sans-serif">MsC Francisco Eduardo Balart Sanchez</h1>
+          <h1 style="color: white; background-color: rgb(22,22, 24); font-family: -apple-system BlinkMacSystemFont, sans-serif">MsC Francisco Eduardo Balart Sanchez</h1>
           <object data="https://s3.amazonaws.com/franciscobalart.io/franciscoresume2023.pdf" style="min-height:100vh;width:100%">
           </object>
       </center>
