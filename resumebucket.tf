@@ -82,10 +82,10 @@ resource "aws_s3_bucket_object" "error_html" {
   depends_on = [aws_s3_bucket.example]
 }
 
-resource "aws_s3_bucket_policy" "bucket_policy" {
-  bucket = aws_s3_bucket.example.id
-  policy = data.aws_iam_policy_document.bucket_policy_document.json
-}
+#resource "aws_s3_bucket_policy" "bucket_policy" {
+#  bucket = aws_s3_bucket.example.id
+#  policy = data.aws_iam_policy_document.bucket_policy_document.json
+#}
 
 output "website_url" {
   value = aws_s3_bucket.example.website_endpoint
