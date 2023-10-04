@@ -2,11 +2,10 @@ module "acm" {
   source  = "terraform-aws-modules/acm/aws"
 
   domain_name  = "franciscobalart.io"
-  zone_id      = "Z0829085HFUZ837P3585"
+  zone_id      = "Z05309372P5K06T9KRT76"
 
   subject_alternative_names = [
-    "*.franciscobalart.io",
-    "franciscobalart.io",
+    "www.franciscobalart.io",
   ]
 
   wait_for_validation = false
