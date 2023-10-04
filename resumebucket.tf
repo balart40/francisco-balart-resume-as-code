@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "example" {
 
 resource "aws_s3_bucket_acl" "example" {
   bucket = aws_s3_bucket.example.id
-  acl    = "private"
+  acl    = "public-read"
   depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
 }
 
@@ -13,15 +13,16 @@ resource "aws_s3_bucket_acl" "example" {
 resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
   bucket = aws_s3_bucket.example.id
   rule {
-    object_ownership = "ObjectWriter"
+    #object_ownership = "ObjectWriter"
+    object_ownership = "BucketOwnerPreferred"
   }
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
   bucket = aws_s3_bucket.example.id
 
-  block_public_acls       = true
-  block_public_policy     = true
+  block_public_acls       = false
+  block_public_policy     = false
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
@@ -50,15 +51,16 @@ resource "aws_s3_bucket_object" "index_html" {
   </head>
   <body>
       <center>
-          <h1 style="color: green">GeeksforGeeks</h1>
+          <h1 style="color: black">MsC Francisco Eduardo Balart Sanchez</h1>
           <h3>Embedding the PDF file Using Object Tag</h3>
-          <object data="https://s3.amazonaws.com/franciscobalart.io/franciscoresume2023.pdf" width="800" height="500">
+          <object data="http://franciscobalart.io.s3-website-us-east-1.amazonaws.com/franciscoresume2023.pdf" width="800" height="500">
           </object>
       </center>
   </body>
   </html>
   EOF
   depends_on = [aws_s3_bucket.example]
+
 }
 
 resource "aws_s3_bucket_object" "error_html" {
@@ -80,10 +82,10 @@ resource "aws_s3_bucket_object" "error_html" {
   depends_on = [aws_s3_bucket.example]
 }
 
-#resource "aws_s3_bucket_policy" "bucket_policy" {
-#  bucket = aws_s3_bucket.example.id
-#  policy = data.aws_iam_policy_document.bucket_policy_document.json
-#}
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.example.id
+  policy = data.aws_iam_policy_document.bucket_policy_document.json
+}
 
 output "website_url" {
   value = aws_s3_bucket.example.website_endpoint

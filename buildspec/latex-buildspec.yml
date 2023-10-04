@@ -16,4 +16,4 @@ phases:
 
   post_build:
     commands:
-      - aws s3 cp franciscoresume2023.pdf s3://franciscobalart.io/ --content-type "application/pdf" --metadata Content-Type=application/pdf
+      - aws s3 cp franciscoresume2023.pdf s3://franciscobalart.io/ --acl "public-read" --content-type "application/pdf" --metadata Content-Type=application/pdf
