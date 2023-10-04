@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "example" {
 
 resource "aws_s3_bucket_acl" "example" {
   bucket = aws_s3_bucket.example.id
-  acl    = "public-read"
+  acl    = "private"
   depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
 }
 
@@ -13,17 +13,17 @@ resource "aws_s3_bucket_acl" "example" {
 resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
   bucket = aws_s3_bucket.example.id
   rule {
-    #object_ownership = "ObjectWriter"
-    object_ownership = "BucketOwnerPreferred"
+    object_ownership = "ObjectWriter"
+    #object_ownership = "BucketOwnerPreferred"
   }
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
   bucket = aws_s3_bucket.example.id
 
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
   restrict_public_buckets = true
 }
 
@@ -52,7 +52,7 @@ resource "aws_s3_bucket_object" "index_html" {
   <body>
       <center>
           <h1 style="color: white; background-color: rgb(22,22, 24); font-family: -apple-system BlinkMacSystemFont, sans-serif">MsC Francisco Eduardo Balart Sanchez</h1>
-          <object data="https://s3.amazonaws.com/franciscobalart.io/franciscoresume2023.pdf" style="min-height:100vh;width:100%">
+          <object data="franciscoresume2023.pdf" style="min-height:100vh;width:100%">
           </object>
       </center>
   </body>
